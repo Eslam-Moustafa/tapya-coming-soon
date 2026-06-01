@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TAPYA — Coming Soon</title>
-  <meta name="description" content="Ecommerce operations platform. From raw product input to live listing — without enterprise overhead." />
+  <meta name="description" content="Ecommerce operations infrastructure for brands, sellers, and marketplace operators." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,700;1,900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -19,28 +19,36 @@
       --white: #FFFFFF;
     }
 
-    html, body {
-      height: 100%;
-    }
+    html, body { height: 100%; }
 
     body {
       font-family: 'Space Grotesk', sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      position: relative;
       overflow-x: hidden;
     }
 
-    /* ── Gradient background ── */
+    /* Gradient */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse at 0% 0%, #DBFF01 0%, transparent 55%),
-        radial-gradient(ellipse at 100% 0%, #D93999 0%, transparent 60%),
+        radial-gradient(ellipse at -5% -5%, #DBFF01 0%, transparent 52%),
+        radial-gradient(ellipse at 105% -5%, #D93999 0%, transparent 55%),
         #EBE5D8;
+      z-index: -2;
+    }
+
+    /* Grain texture */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      pointer-events: none;
       z-index: -1;
     }
 
@@ -48,8 +56,7 @@
     nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 28px 40px;
+      padding: 32px 48px;
     }
 
     .nav-logo {
@@ -59,101 +66,104 @@
     }
 
     .nav-logo svg {
-      height: 38px;
+      height: 36px;
       width: auto;
     }
 
-    .nav-link {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--black);
-      text-decoration: none;
-      opacity: 0.55;
-      letter-spacing: 0.01em;
-      transition: opacity 0.2s;
-    }
-
-    .nav-link:hover { opacity: 1; }
-
-    /* ── Hero ── */
+    /* ── Main ── */
     main {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 40px 40px 80px;
-      max-width: 1100px;
+      padding: 20px 48px 72px;
+      max-width: 1080px;
     }
 
+    /* Eyebrow */
     .eyebrow {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 12px;
+      gap: 14px;
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--black);
-      opacity: 0.6;
-      margin-bottom: 28px;
+      opacity: 0.5;
+      margin-bottom: 32px;
     }
 
-    .eyebrow::before {
-      content: '';
-      width: 32px;
-      height: 1.5px;
+    .eyebrow-line {
+      width: 28px;
+      height: 1px;
       background: currentColor;
       flex-shrink: 0;
     }
 
-    /* ── Headline ── */
+    .eyebrow-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--rose);
+      opacity: 1;
+      animation: blink 2.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.15; }
+    }
+
+    /* Headline */
     h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(52px, 7.5vw, 104px);
+      font-size: clamp(56px, 8vw, 112px);
       font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.04em;
+      line-height: 0.93;
+      letter-spacing: -0.045em;
       color: var(--black);
-      margin-bottom: 28px;
-      max-width: 900px;
+      margin-bottom: 32px;
+      max-width: 860px;
     }
 
     h1 em {
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-weight: 800;
+      font-weight: 900;
       color: var(--rose);
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
     }
 
-    /* ── Sub ── */
+    /* Subline */
     .subline {
-      font-size: clamp(15px, 1.6vw, 18px);
+      font-size: clamp(15px, 1.5vw, 17px);
       font-weight: 400;
       color: var(--black);
-      opacity: 0.65;
-      line-height: 1.7;
-      max-width: 560px;
-      margin-bottom: 40px;
+      opacity: 0.6;
+      line-height: 1.75;
+      max-width: 500px;
+      margin-bottom: 44px;
     }
 
-    /* ── Pills ── */
+    /* Pills */
     .pills {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 52px;
+      margin-bottom: 48px;
     }
 
     .pill {
       display: inline-flex;
       align-items: center;
-      padding: 8px 20px;
+      padding: 7px 18px;
       border-radius: 100px;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
@@ -161,165 +171,160 @@
     .pill-rose  { background: var(--rose);  color: var(--white); }
     .pill-black { background: var(--black); color: var(--white); }
 
-    /* ── Waitlist form ── */
-    .form-area {
+    /* Form — uses FormSubmit.co to send to both inboxes */
+    .form-wrap {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      max-width: 480px;
+      gap: 10px;
+      max-width: 460px;
     }
 
     .form-row {
       display: flex;
       align-items: stretch;
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1.5px solid rgba(0,0,0,0.1);
-      border-radius: 14px;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(0,0,0,0.08);
+      border-radius: 16px;
       overflow: hidden;
+      transition: border-color 0.2s, background 0.2s;
     }
 
     .form-row:focus-within {
-      border-color: rgba(0,0,0,0.25);
-      background: rgba(255,255,255,0.75);
+      border-color: rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.72);
     }
 
     .form-row input[type="email"] {
       flex: 1;
       background: transparent;
       border: none;
-      padding: 16px 20px;
+      padding: 17px 20px;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 15px;
+      font-size: 14px;
       color: var(--black);
       outline: none;
       min-width: 0;
     }
 
     .form-row input::placeholder {
-      color: rgba(0,0,0,0.35);
+      color: rgba(0,0,0,0.3);
     }
 
     .form-row button {
       background: var(--black);
       color: var(--white);
       border: none;
-      padding: 16px 24px;
+      padding: 17px 26px;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       cursor: pointer;
       white-space: nowrap;
       flex-shrink: 0;
       transition: background 0.15s;
     }
 
-    .form-row button:hover {
-      background: #222;
-    }
+    .form-row button:hover { background: #1a1a1a; }
 
     .form-note {
-      font-size: 12px;
-      color: rgba(0,0,0,0.4);
-      padding-left: 4px;
+      font-size: 11.5px;
+      color: rgba(0,0,0,0.35);
+      padding-left: 2px;
+      letter-spacing: 0.01em;
     }
 
-    /* ── Success ── */
+    /* Success */
     .success-msg {
       display: none;
       align-items: center;
-      gap: 10px;
-      background: rgba(255,255,255,0.6);
-      border: 1.5px solid rgba(0,0,0,0.1);
-      border-radius: 14px;
-      padding: 16px 20px;
+      gap: 12px;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(0,0,0,0.08);
+      border-radius: 16px;
+      padding: 17px 22px;
       font-size: 14px;
       font-weight: 600;
       color: var(--black);
-      max-width: 480px;
+      max-width: 460px;
     }
 
     .success-msg.visible { display: flex; }
 
-    /* ── Footer ── */
+    /* Footer */
     footer {
-      padding: 20px 40px;
+      padding: 22px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       flex-wrap: wrap;
+      border-top: 1px solid rgba(0,0,0,0.07);
     }
 
     .footer-copy {
-      font-size: 12px;
-      color: rgba(0,0,0,0.4);
+      font-size: 11px;
+      color: rgba(0,0,0,0.35);
+      letter-spacing: 0.02em;
     }
 
     .footer-email {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       color: var(--black);
-      opacity: 0.5;
+      opacity: 0.45;
       text-decoration: none;
+      letter-spacing: 0.01em;
       transition: opacity 0.2s;
     }
 
-    .footer-email:hover { opacity: 1; }
+    .footer-email:hover { opacity: 0.9; }
 
-    /* ── Responsive ── */
+    /* Responsive */
     @media (max-width: 600px) {
-      nav { padding: 20px 24px; }
-      main { padding: 32px 24px 60px; }
+      nav   { padding: 24px; }
+      main  { padding: 16px 24px 56px; }
       footer { padding: 18px 24px; justify-content: center; text-align: center; }
 
-      .form-row {
-        flex-direction: column;
-        border-radius: 14px;
-      }
-
-      .form-row input[type="email"] {
-        border-bottom: 1px solid rgba(0,0,0,0.08);
-      }
-
-      .form-row button {
-        padding: 16px;
-        border-radius: 0;
-      }
+      .form-row { flex-direction: column; border-radius: 16px; }
+      .form-row input[type="email"] { border-bottom: 1px solid rgba(0,0,0,0.07); }
+      .form-row button { padding: 16px; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Nav -->
   <nav>
     <a class="nav-logo" href="#">
-      <!-- Full horizontal logo: black body + rose accents (reads on light gradient) -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2061.55 635.86" role="img" aria-label="TAPYA">
-        <path fill="#000000" d="M839.59,575.44c-.12-.43-.25-.87-.38-1.3-5.28-17.06-15.83-31.67-25.02-46.81-10.05-16.58-20.13-33.15-30.22-49.71-10.39-17.07-20.79-34.12-31.19-51.18l-2.94-4.81c-24.09-39.5-48.95-80.27-73.41-120.73,1.82-4.25,3.73-8.71,5.75-13.44,6.84-16.06,2.84-32.76-2.84-48.56-3.87-10.77-8.65-21.22-12.36-32.06-2.82-8.26-5.04-16.77-8.83-24.63-4.35-9.01-10.47-14.99-18.85-20.19-4.97-3.08-9.98-6.42-15.62-8.11l-73.83-22.17c-.42-.13-.84-.25-1.26-.36-10.37-17.11-20.75-34.22-31.12-51.33-5.19-8.56-10.26-17.23-15.63-25.68-6.5-10.23-11.81-21.29-19.36-30.83-8.96-11.29-21.5-21.85-36.35-23.15-1.42-.18-3.36-.39-5.82-.39-3.86,0-7.68.53-11.4,1.58-4.12,1.18-8.24,2.35-12.37,3.52-12.74,3.62-25.48,7.24-38.2,10.95-12.62,3.69-25.64,7.06-37.54,12.77-10.3,4.95-18.21,12.04-24.53,21.47-18.06,26.99-33.98,50.85-48.71,72.93-15.3,22.96-23.34,48.05-23.94,74.7-6.69,7.37-13.66,14.68-20.77,22.09-24.22,25.24-48.81,50.83-72.84,75.84l-14.4,14.98c-27.99,29.13-56.85,59.16-85.24,88.74-20.92,21.81-35.07,44.15-43.23,68.29-12.58,37.15-8.39,76.85,11.5,108.9,9.58,15.46,22.2,28.33,37.48,38.23,15.7,10.18,33.34,16.65,52.44,19.22,8.18,1.1,16.47,1.65,24.62,1.65,28.53,0,57.12-6.72,84.98-19.97,54.31-25.86,103.25-49.88,149.63-73.43,1.76-.9,3.53-1.8,5.3-2.7l3.68-1.86c27.44-13.92,55.69-28.26,83.4-44.07l4.34,2.91c18.62,12.44,38.42,25.68,57.99,38.65,1.17.77,2.54,1.75,4,2.78l.23.17c6.56,4.66,14.73,10.46,25.67,14.34,16.72,5.92,33.58,11.16,49.88,16.22,6.58,2.05,13.39,4.17,20.01,6.27l69.54,22.15c25.7,8.19,51.41,16.38,77.11,24.56,4.31,1.37,8.64,2.7,12.83,3.99l8.68,2.67c3.82,1.18,7.8,1.78,11.81,1.78,11.15,0,21.86-4.69,29.4-12.88,10.96-11.88,12.2-27.12,7.93-42Z"/>
+        <path fill="#000" d="M839.59,575.44c-.12-.43-.25-.87-.38-1.3-5.28-17.06-15.83-31.67-25.02-46.81-10.05-16.58-20.13-33.15-30.22-49.71-10.39-17.07-20.79-34.12-31.19-51.18l-2.94-4.81c-24.09-39.5-48.95-80.27-73.41-120.73,1.82-4.25,3.73-8.71,5.75-13.44,6.84-16.06,2.84-32.76-2.84-48.56-3.87-10.77-8.65-21.22-12.36-32.06-2.82-8.26-5.04-16.77-8.83-24.63-4.35-9.01-10.47-14.99-18.85-20.19-4.97-3.08-9.98-6.42-15.62-8.11l-73.83-22.17c-.42-.13-.84-.25-1.26-.36-10.37-17.11-20.75-34.22-31.12-51.33-5.19-8.56-10.26-17.23-15.63-25.68-6.5-10.23-11.81-21.29-19.36-30.83-8.96-11.29-21.5-21.85-36.35-23.15-1.42-.18-3.36-.39-5.82-.39-3.86,0-7.68.53-11.4,1.58-4.12,1.18-8.24,2.35-12.37,3.52-12.74,3.62-25.48,7.24-38.2,10.95-12.62,3.69-25.64,7.06-37.54,12.77-10.3,4.95-18.21,12.04-24.53,21.47-18.06,26.99-33.98,50.85-48.71,72.93-15.3,22.96-23.34,48.05-23.94,74.7-6.69,7.37-13.66,14.68-20.77,22.09-24.22,25.24-48.81,50.83-72.84,75.84l-14.4,14.98c-27.99,29.13-56.85,59.16-85.24,88.74-20.92,21.81-35.07,44.15-43.23,68.29-12.58,37.15-8.39,76.85,11.5,108.9,9.58,15.46,22.2,28.33,37.48,38.23,15.7,10.18,33.34,16.65,52.44,19.22,8.18,1.1,16.47,1.65,24.62,1.65,28.53,0,57.12-6.72,84.98-19.97,54.31-25.86,103.25-49.88,149.63-73.43,1.76-.9,3.53-1.8,5.3-2.7l3.68-1.86c27.44-13.92,55.69-28.26,83.4-44.07l4.34,2.91c18.62,12.44,38.42,25.68,57.99,38.65,1.17.77,2.54,1.75,4,2.78l.23.17c6.56,4.66,14.73,10.46,25.67,14.34,16.72,5.92,33.58,11.16,49.88,16.22,6.58,2.05,13.39,4.17,20.01,6.27l69.54,22.15c25.7,8.19,51.41,16.38,77.11,24.56,4.31,1.37,8.64,2.7,12.83,3.99l8.68,2.67c3.82,1.18,7.8,1.78,11.81,1.78,11.15,0,21.86-4.69,29.4-12.88,10.96-11.88,12.2-27.12,7.93-42Z"/>
         <path fill="#D93999" d="M802.26,590.32c-7.06-2.18-14.13-4.31-21.17-6.55-48.89-15.56-97.77-31.15-146.66-46.71-22.92-7.3-46.02-14.07-68.69-22.09-7.62-2.7-14.25-8.36-21.15-12.93-23.46-15.54-46.83-31.2-70.22-46.83-1-.67-1.87-1.53-3.27-2.69,10.87-6.91,21.22-13.52,31.59-20.08,8.64-5.47,17.48-10.64,25.89-16.45,4-2.77,6.84-2.42,10.69.13,30.57,20.23,61.26,40.29,91.92,60.38,55.81,36.56,111.63,73.1,167.43,109.65,1.4.91,2.74,1.91,3.64,4.17Z"/>
         <path fill="#D93999" d="M798.7,578.98c-.39.37-.78.75-1.16,1.12-.74-1.11-1.41-2.29-2.24-3.34-54.81-69.23-109.34-138.7-164.79-207.42-7.89-9.79-10.92-17.31-5.35-27.4l12.48-27.89c53.78,89.04,107.9,176.9,161.06,264.93Z"/>
         <path fill="#D93999" d="M612.18,192.21c-7.89,21.11-15.38,41.15-23.42,62.68-17.6-28.63-34.42-56.02-51.25-83.41.29-.48.58-.95.87-1.42,24.45,7.34,48.89,14.68,73.8,22.15Z"/>
         <path fill="#D93999" d="M584.64,267.99c-12.65,8.53-24.76,16.7-37.26,25.14-9.7-15.14-19-29.64-28.28-44.16-29.93-46.86-59.8-93.75-89.79-140.58-9.18-14.33-9.27-14.22.28-28.57,5.79-8.69,11.43-17.47,17.16-26.2,1.25-1.89,2.64-3.7,4.28-5.99,44.66,73.66,88.91,146.64,133.61,220.36Z"/>
         <path fill="#D93999" d="M442.63,40.23c-28.09,43.23-55.84,85.95-84.65,130.29-3.88-16.12-4.86-30.49-2.98-44.73,2.62-19.81,6.33-39.49,10.02-59.13.48-2.52,3.21-5.87,5.58-6.59,23.01-6.95,46.16-13.43,69.28-20.02.54-.15,1.19.07,2.75.18Z"/>
         <path fill="#D93999" d="M645.37,271.8c-10.18,23.92-20.58,47.74-31.11,71.51-1.06,2.4-2.93,4.85-5.08,6.28-48.68,32.32-96.68,65.75-146.45,96.28-36.45,22.36-74.92,41.54-113.09,60.94-49.21,25.01-98.83,49.24-148.68,72.96-27.39,13.04-56.48,18.91-87.07,14.79-54.79-7.37-86.93-60.5-68.87-113.88,7-20.66,19.31-37.88,34.21-53.42,57.46-59.88,115.01-119.68,172.47-179.55,9.61-10.01,19.18-20.06,28.31-30.48,2.23-2.56,3.93-6.76,3.74-10.08-1.26-22.59,4.63-43.04,17.09-61.74,16.21-24.31,32.43-48.6,48.67-72.88.79-1.17,1.81-2.19,3.32-4-2.56,15.68-5.4,30.31-7.27,45.06-6.67,52.41,7.2,98.96,41.43,139.13,24.62,28.89,49.85,57.25,74.81,85.86,1.52,1.73,3.01,3.48,5.03,5.82-9.63,5.65-18.67,11.16-27.9,16.33-13.75,7.72-27.67,15.15-41.44,22.84-3.23,1.8-5.29,1.23-7.56-1.65-23.56-30.06-48.02-59.55-70.84-90.18-3.52-4.74-6.95-9.55-10.06-14.57-.9-1.46-9.94-14.72-9.43-15.33-8.87,11.39-18.09,22.5-26.51,34.19-31.91,44.3-63.77,88.65-95.15,133.33-5.65,8.06-10.18,17.4-13.03,26.82-4.31,14.22,1.77,21.63,16.59,20.92,7.94-.39,16.14-2.18,23.58-5.03,46.97-17.96,93.78-36.31,140.58-54.69,54.43-21.39,104.65-50.74,153.75-82.09,29.11-18.58,57.76-37.89,86.77-56.63,5.22-3.37,7.92-7.89,9.93-13.47,7.38-20.44,14.96-40.81,22.5-61.19.57-1.53,1.47-2.94,2.96-5.85,4.38,11.98,8.3,22.65,12.19,33.33,3.93,10.81,7.98,21.59,11.64,32.5.79,2.37.92,5.58-.03,7.82Z"/>
-        <!-- Wordmark -->
-        <path fill="#000000" d="M912.04,260.75h-70.2v-62.66h221.2v62.66h-70.2v177.03h-80.81v-177.03Z"/>
-        <path fill="#000000" d="M1215.58,396h-91.08l-16.09,41.78h-82.18l104.78-239.69h79.44l104.78,239.69h-83.55l-16.09-41.78ZM1193.33,337.79l-23.28-60.26-23.28,60.26h46.57Z"/>
-        <path fill="#000000" d="M1521.2,209.04c16.44,7.31,29.11,17.81,38.01,31.5,8.9,13.7,13.35,29.68,13.35,47.94s-4.45,34.24-13.35,47.94c-8.9,13.7-21.57,24.2-38.01,31.5-16.44,7.31-35.73,10.96-57.87,10.96h-34.58v58.9h-80.81v-239.69h115.4c22.14,0,41.43,3.65,57.87,10.96ZM1482.85,309.2c5.48-4.91,8.22-11.81,8.22-20.72s-2.74-15.8-8.22-20.72c-5.48-4.91-13.7-7.36-24.65-7.36h-29.45v56.16h29.45c10.96,0,19.18-2.45,24.65-7.36Z"/>
-        <path fill="#000000" d="M1739.19,350.8v86.97h-80.81v-88l-90.4-151.69h85.26l48.97,82.87,49.31-82.87h78.07l-90.4,152.72Z"/>
-        <path fill="#000000" d="M1961.91,396h-91.08l-16.09,41.78h-82.18l104.78-239.69h79.44l104.78,239.69h-83.55l-16.09-41.78ZM1939.65,337.79l-23.28-60.26-23.28,60.26h46.57Z"/>
+        <path fill="#000" d="M912.04,260.75h-70.2v-62.66h221.2v62.66h-70.2v177.03h-80.81v-177.03Z"/>
+        <path fill="#000" d="M1215.58,396h-91.08l-16.09,41.78h-82.18l104.78-239.69h79.44l104.78,239.69h-83.55l-16.09-41.78ZM1193.33,337.79l-23.28-60.26-23.28,60.26h46.57Z"/>
+        <path fill="#000" d="M1521.2,209.04c16.44,7.31,29.11,17.81,38.01,31.5,8.9,13.7,13.35,29.68,13.35,47.94s-4.45,34.24-13.35,47.94c-8.9,13.7-21.57,24.2-38.01,31.5-16.44,7.31-35.73,10.96-57.87,10.96h-34.58v58.9h-80.81v-239.69h115.4c22.14,0,41.43,3.65,57.87,10.96ZM1482.85,309.2c5.48-4.91,8.22-11.81,8.22-20.72s-2.74-15.8-8.22-20.72c-5.48-4.91-13.7-7.36-24.65-7.36h-29.45v56.16h29.45c10.96,0,19.18-2.45,24.65-7.36Z"/>
+        <path fill="#000" d="M1739.19,350.8v86.97h-80.81v-88l-90.4-151.69h85.26l48.97,82.87,49.31-82.87h78.07l-90.4,152.72Z"/>
+        <path fill="#000" d="M1961.91,396h-91.08l-16.09,41.78h-82.18l104.78-239.69h79.44l104.78,239.69h-83.55l-16.09-41.78ZM1939.65,337.79l-23.28-60.26-23.28,60.26h46.57Z"/>
       </svg>
     </a>
-    <a class="nav-link" href="https://tapya.ai" target="_blank" rel="noopener">tapya.ai ↗</a>
   </nav>
 
-  <!-- Hero -->
   <main>
 
-    <p class="eyebrow">Coming soon &nbsp;·&nbsp; Early access</p>
+    <p class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-dot"></span>
+      Coming soon &nbsp;·&nbsp; Early access
+    </p>
 
     <h1>
       Ecommerce ops,<br />
@@ -327,7 +332,7 @@
     </h1>
 
     <p class="subline">
-      From raw product input to live listing across every channel — without the enterprise budget, the 12-month implementation, or the dedicated data team.
+      From raw product to live listing across every channel — without the enterprise budget, the year-long implementation, or the dedicated data team.
     </p>
 
     <div class="pills">
@@ -337,52 +342,50 @@
       <span class="pill pill-black">Automate</span>
     </div>
 
-    <form class="form-area" id="waitlistForm" novalidate>
+    <!-- FormSubmit.co — sends to both inboxes, no backend needed -->
+    <form
+      class="form-wrap"
+      action="https://formsubmit.co/eslam@tapya.ai"
+      method="POST"
+      id="waitlistForm"
+    >
+      <input type="hidden" name="_cc"      value="yosef@tapya.ai" />
+      <input type="hidden" name="_subject" value="TAPYA Early Access Request" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next"   value="https://coming-soon-woad-psi.vercel.app/?submitted=true" />
+
       <div class="form-row">
         <input
           type="email"
-          id="emailInput"
+          name="email"
           placeholder="your@email.com"
           autocomplete="email"
           required
         />
         <button type="submit">Get early access</button>
       </div>
-      <p class="form-note" id="formNote">No spam. No commitment. Just early access.</p>
+      <p class="form-note">No spam. No commitment.</p>
     </form>
 
     <div class="success-msg" id="successMsg">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="#000"/><path d="M5 8l2 2 4-4" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      You're on the list. We'll be in touch.
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="#000"/><path d="M5 8l2 2 4-4" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      You're on the list — we'll be in touch.
     </div>
 
   </main>
 
-  <!-- Footer -->
   <footer>
-    <span class="footer-copy">© 2026 Devvion Inc. · TAPYA</span>
+    <span class="footer-copy">© 2026 Devvion Inc.</span>
     <a class="footer-email" href="mailto:hello@tapya.ai">hello@tapya.ai</a>
   </footer>
 
   <script>
-    const form = document.getElementById('waitlistForm');
-    const input = document.getElementById('emailInput');
-    const successMsg = document.getElementById('successMsg');
-    const formNote = document.getElementById('formNote');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const email = input.value.trim();
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        form.querySelector('.form-row').style.borderColor = '#D93999';
-        setTimeout(() => { form.querySelector('.form-row').style.borderColor = ''; }, 1500);
-        return;
-      }
-      // Wire to your endpoint (Airtable, Typeform, Mailchimp, webhook)
-      console.log('Waitlist signup:', email);
-      form.style.display = 'none';
-      successMsg.classList.add('visible');
-    });
+    // Show success state when redirected back after form submit
+    if (new URLSearchParams(window.location.search).get('submitted') === 'true') {
+      document.getElementById('waitlistForm').style.display = 'none';
+      document.getElementById('successMsg').classList.add('visible');
+    }
   </script>
 
 </body>
